@@ -1,13 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/core/observer/my_bloc_observer.dart';
+import 'package:news_app/features/home/presentation/pages/home_page.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
+
+import 'features/home/presentation/bloc/home_bloc.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
-  runApp(MaterialApp(
-    home: MyApp(),
-  ));
+  runApp(
+    ResponsiveSizer(builder: (context, orientation, screenType) {
+      return MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => HomeBloc()),
+        ],
+        child: MaterialApp(
+          home: MyApp(),
+          debugShowCheckedModeBanner: false,
+        ),
+      );
+    }),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -15,6 +29,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return const HomePage();
   }
 }
