@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/core/observer/my_bloc_observer.dart';
-import 'package:news_app/core/routings/app_routing.dart';
+import 'package:news_app/core/routings/app_router.dart';
 import 'package:news_app/features/home/presentation/pages/home_page.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
