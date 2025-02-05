@@ -17,7 +17,9 @@ void main() {
       return MultiBlocProvider(
         providers: [
           BlocProvider(
-              create: (context) => HomeBloc()..add(GetAllArticlesEvent())),
+              create: (context) => HomeBloc()
+                ..add(GetAllArticlesEvent())
+                ..add(GetAllTopHeadlinesArticlesEvent())),
         ],
         child: MaterialApp(
           home: MyApp(),
