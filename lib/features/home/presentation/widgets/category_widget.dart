@@ -27,14 +27,19 @@ class CategoryWidget extends StatelessWidget {
           height: widthPercentage(60).w,
           width: double.infinity,
           padding: EdgeInsets.only(top: widthPercentage(45).w),
-          color: const Color.fromARGB(255, 91, 59, 59).withValues(alpha: 0.5),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            color: const Color.fromARGB(255, 91, 59, 59).withValues(alpha: 0.5),
+          ),
           child: Center(
-            child: Text(
-              categoryName,
-              style: TextStyle(
-                fontSize: widthPercentage(25).w,
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
+            child: FittedBox(
+              child: Text(
+                categoryName,
+                style: TextStyle(
+                  fontSize: widthPercentage(30).w,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
