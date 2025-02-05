@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/core/widgets/the_app_bar.dart';
 
-import '../widgets/Categories_widget.dart';
+import '../widgets/categories_listview.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
       appBar: theAppBar(),
       body: CustomScrollView(
         slivers: [
-          CategoriesWidget(),
+          CategoriesListview(),
         ],
       ),
     );
