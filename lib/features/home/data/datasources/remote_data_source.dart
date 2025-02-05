@@ -9,13 +9,15 @@ import 'package:news_app/features/home/data/models/article_model.dart';
 class RemoteDataSource implements BaseRemoteDataSource {
   @override
   Future<List<ArticleModel>> getAllArticles() async {
-    try {
-      final response = await Dio().get(ApiConstants.everything);
-      log(response.data);
-    } catch (e) {
-      log(e.toString());
+    final response = await Dio().get(ApiConstants.everything);
+    log(response.data);
+    if (response.statusCode == 200) {
+      return List<ArticleModel>.from(
+        (response.data as List).map((e) => ArticleModel.fromJson(e)),
+      );
+    } else {
+      throw ServerException(response.statusMessage);
     }
-    throw UnimplementedError();
   }
 
   @override
