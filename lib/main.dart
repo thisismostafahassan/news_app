@@ -16,7 +16,8 @@ void main() {
     ResponsiveSizer(builder: (context, orientation, screenType) {
       return MultiBlocProvider(
         providers: [
-          BlocProvider(create: (context) => HomeBloc()),
+          BlocProvider(
+              create: (context) => HomeBloc()..add(GetAllArticlesEvent())),
         ],
         child: MaterialApp(
           home: MyApp(),
