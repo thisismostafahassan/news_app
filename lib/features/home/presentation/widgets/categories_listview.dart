@@ -17,12 +17,19 @@ class CategoriesListview extends StatelessWidget {
         child: ListView(
           scrollDirection: Axis.horizontal,
           children: [
-            CategoryWidget(imagePath: 'assets/politics.jpg'),
-            CategoryWidget(imagePath: 'assets/sports.avif'),
-            CategoryWidget(imagePath: 'assets/health.avif'),
-            CategoryWidget(imagePath: 'assets/crypto.png'),
-            CategoryWidget(imagePath: 'assets/drama.jpg'),
-            CategoryWidget(imagePath: 'assets/entertainment.png'),
+            CategoryWidget(
+                imagePath: 'assets/politics.jpg', categoryName: 'Politics'),
+            CategoryWidget(
+                imagePath: 'assets/sports.avif', categoryName: 'Sports'),
+            CategoryWidget(
+                imagePath: 'assets/health.avif', categoryName: 'Health'),
+            CategoryWidget(
+                imagePath: 'assets/crypto.png', categoryName: 'Crypto'),
+            CategoryWidget(
+                imagePath: 'assets/drama.jpg', categoryName: 'Drama'),
+            CategoryWidget(
+                imagePath: 'assets/entertainment.png',
+                categoryName: 'Entertainment'),
           ],
         ),
       ),
