@@ -8,7 +8,7 @@ class ApiConstants {
       '$baseUrl/everything?q=general&apikey=$apiKey';
   // Top-Headlines All sources
   static const String topHeadlineallSources =
-      '$baseUrl/top-headlines/sources?category=general&apiKey=$apiKey';
+      '$baseUrl/top-headlines?category=general&apiKey=$apiKey';
   // Sports
   static const String sports =
       '$baseUrl/top-headlines?category=sports&apiKey=$apiKey';

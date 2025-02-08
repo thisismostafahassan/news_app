@@ -27,11 +27,12 @@ class RemoteDataSource implements BaseRemoteDataSource {
   Future<List<ArticleModel>> getAllTobHeadlineSources() async {
     final response = await Dio().get(ApiConstants.topHeadlineallSources);
     log(response.data.toString());
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 &&
+        response.data is Map<String, dynamic> &&
+        response.data["articles"] is List) {
       return List<ArticleModel>.from(
-        (response.data["sources"] as List).map(
-          (e) => ArticleModel.fromJson(e),
-        ),
+        (response.data["articles"] as List)
+            .map((e) => ArticleModel.fromJson(e)),
       );
     } else {
       throw ServerException(response.statusMessage);
