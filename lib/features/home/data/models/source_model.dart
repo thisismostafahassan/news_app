@@ -8,8 +8,8 @@ class SourceModel extends Source {
 
   factory SourceModel.fromJson(Map<String, dynamic> json) {
     return SourceModel(
-      id: json['source']['id'],
-      name: json['source']['name'],
+      id: json['id'],
+      name: json['name'],
     );
   }
 }

@@ -39,7 +39,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       });
     });
     //
-    //
     // Get All TopHeadlines
     on<GetAllTopHeadlinesArticlesEvent>((event, emit) async {
       final BaseRemoteDataSource baseRemoteDataSource = RemoteDataSource();

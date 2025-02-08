@@ -1,3 +1,4 @@
+import 'package:news_app/features/home/data/models/source_model.dart';
 import 'package:news_app/features/home/domain/entities/article.dart';
 
 class ArticleModel extends Article {
@@ -14,7 +15,7 @@ class ArticleModel extends Article {
 
   factory ArticleModel.fromJson(Map<String, dynamic> json) {
     return ArticleModel(
-      source: json['source'],
+      source: SourceModel.fromJson(json['source'] as Map<String, dynamic>),
       author: json['author'],
       title: json['title'],
       description: json['description'],

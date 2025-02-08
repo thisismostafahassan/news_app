@@ -10,10 +10,13 @@ class RemoteDataSource implements BaseRemoteDataSource {
   @override
   Future<List<ArticleModel>> getAllArticles() async {
     final response = await Dio().get(ApiConstants.everything);
-    log(response.data);
-    if (response.statusCode == 200) {
+    log(response.data.toString());
+    if (response.statusCode == 200 &&
+        response.data is Map<String, dynamic> &&
+        response.data["articles"] is List) {
       return List<ArticleModel>.from(
-        (response.data as List).map((e) => ArticleModel.fromJson(e)),
+        (response.data["articles"] as List)
+            .map((e) => ArticleModel.fromJson(e)),
       );
     } else {
       throw ServerException(response.statusMessage);
@@ -23,10 +26,10 @@ class RemoteDataSource implements BaseRemoteDataSource {
   @override
   Future<List<ArticleModel>> getAllTobHeadlineSources() async {
     final response = await Dio().get(ApiConstants.topHeadlineallSources);
-    log(response.data);
+    log(response.data.toString());
     if (response.statusCode == 200) {
       return List<ArticleModel>.from(
-        (response.data as List).map(
+        (response.data["sources"] as List).map(
           (e) => ArticleModel.fromJson(e),
         ),
       );

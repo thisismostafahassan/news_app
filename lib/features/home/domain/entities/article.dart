@@ -1,4 +1,4 @@
-import 'package:dartz/dartz_streaming.dart';
+import 'source.dart';
 
 class Article {
   final Source? source;

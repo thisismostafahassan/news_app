@@ -8,7 +8,8 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'features/home/presentation/bloc/home_bloc.dart';
 
-void main() {
+void main() async {
+  AppRouter.homeBloc.add(GetAllTopHeadlinesArticlesEvent());
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
   final AppRouter appRouter = AppRouter();
@@ -16,10 +17,11 @@ void main() {
     ResponsiveSizer(builder: (context, orientation, screenType) {
       return MultiBlocProvider(
         providers: [
-          BlocProvider(
-              create: (context) => HomeBloc()
-                ..add(GetAllArticlesEvent())
-                ..add(GetAllTopHeadlinesArticlesEvent())),
+          BlocProvider<HomeBloc>(
+            create: (context) => HomeBloc()
+              ..add(GetAllArticlesEvent())
+              ..add(GetAllTopHeadlinesArticlesEvent()),
+          ),
         ],
         child: MaterialApp(
           home: MyApp(),
