@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/core/utils/enum.dart';
 import 'package:news_app/features/home/data/datasources/base_remote_data_source.dart';
@@ -12,7 +14,7 @@ part 'home_event.dart';
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  List allArticles = [];
+  List<Article> allArticles = [];
   List topHeadlinesArticles = [];
   HomeBloc() : super(HomeInitial()) {
     // Get All Articles
@@ -31,6 +33,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
                 requestState: RequestState.error,
               )), (r) {
         allArticles = r;
+
         emit(GetAllArticlesState(
           articles: r,
           message: 'Success',

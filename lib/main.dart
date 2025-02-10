@@ -9,7 +9,6 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'features/home/presentation/bloc/home_bloc.dart';
 
 void main() async {
-  AppRouter.homeBloc.add(GetAllTopHeadlinesArticlesEvent());
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
   final AppRouter appRouter = AppRouter();
@@ -18,9 +17,7 @@ void main() async {
       return MultiBlocProvider(
         providers: [
           BlocProvider<HomeBloc>(
-            create: (context) => HomeBloc()
-              ..add(GetAllArticlesEvent())
-              ..add(GetAllTopHeadlinesArticlesEvent()),
+            create: (context) => HomeBloc(),
           ),
         ],
         child: MaterialApp(

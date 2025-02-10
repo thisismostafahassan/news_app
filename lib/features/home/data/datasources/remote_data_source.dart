@@ -10,7 +10,7 @@ class RemoteDataSource implements BaseRemoteDataSource {
   @override
   Future<List<ArticleModel>> getAllArticles() async {
     final response = await Dio().get(ApiConstants.everything);
-    log(response.data.toString());
+    log(response.toString());
     if (response.statusCode == 200 &&
         response.data is Map<String, dynamic> &&
         response.data["articles"] is List) {
@@ -26,7 +26,7 @@ class RemoteDataSource implements BaseRemoteDataSource {
   @override
   Future<List<ArticleModel>> getAllTobHeadlineSources() async {
     final response = await Dio().get(ApiConstants.topHeadlineallSources);
-    log(response.data.toString());
+
     if (response.statusCode == 200 &&
         response.data is Map<String, dynamic> &&
         response.data["articles"] is List) {
