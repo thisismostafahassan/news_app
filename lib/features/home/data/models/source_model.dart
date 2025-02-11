@@ -12,4 +12,9 @@ class SourceModel extends Source {
       name: json['name'],
     );
   }
+  //
+  @override
+  String toString() {
+    return 'Source(id: $id, name: $name)';
+  }
 }

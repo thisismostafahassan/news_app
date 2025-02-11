@@ -17,7 +17,6 @@ class HomePage extends StatelessWidget {
       value: AppRouter.homeBloc..add(GetAllArticlesEvent()),
       child: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
-          final homeBloc = context.watch<HomeBloc>();
           return Scaffold(
             appBar: theAppBar(),
             body: CustomScrollView(

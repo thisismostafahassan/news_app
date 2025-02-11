@@ -25,4 +25,9 @@ class ArticleModel extends Article {
       urlToImage: json['urlToImage'],
     );
   }
+  //
+  @override
+  String toString() {
+    return 'ArticleModel(title: $title, content: $content, source: $source)';
+  }
 }

@@ -33,7 +33,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
                 requestState: RequestState.error,
               )), (r) {
         allArticles = r;
-
+        log(r.toString());
         emit(GetAllArticlesState(
           articles: r,
           message: 'Success',

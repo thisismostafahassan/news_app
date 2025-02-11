@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:news_app/core/constants/api_constants.dart';
 import 'package:news_app/core/errors/exception.dart';
@@ -10,7 +8,7 @@ class RemoteDataSource implements BaseRemoteDataSource {
   @override
   Future<List<ArticleModel>> getAllArticles() async {
     final response = await Dio().get(ApiConstants.everything);
-    log(response.toString());
+
     if (response.statusCode == 200 &&
         response.data is Map<String, dynamic> &&
         response.data["articles"] is List) {
