@@ -27,3 +27,5 @@ class GetAllTopHeadlinesArticlesState extends HomeState {
     this.message = '',
   });
 }
+
+class GetSelectedArticleState extends HomeState {}

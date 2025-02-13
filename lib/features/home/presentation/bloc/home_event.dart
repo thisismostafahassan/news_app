@@ -7,3 +7,5 @@ abstract class HomeEvent {
 class GetAllArticlesEvent extends HomeEvent {}
 
 class GetAllTopHeadlinesArticlesEvent extends HomeEvent {}
+
+class GetSelectedArticleEvent extends HomeEvent {}

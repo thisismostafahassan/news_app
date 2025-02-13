@@ -14,6 +14,8 @@ part 'home_state.dart';
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   List<Article> allArticles = [];
   List topHeadlinesArticles = [];
+  RequestState currentState = RequestState.loading;
+  late Article selectedArticle;
   HomeBloc() : super(HomeInitial()) {
     // Get All Articles
     on<GetAllArticlesEvent>((event, emit) async {
@@ -24,18 +26,20 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           await GetAllArticlesUsecase(baseHomeRepository: baseHomeRepository)
               .execute();
 
-      response.fold(
-          (l) => emit(GetAllArticlesState(
-                articles: [],
-                message: l.message,
-                requestState: RequestState.error,
-              )), (r) {
+      response.fold((l) {
+        currentState = RequestState.error;
+        emit(GetAllArticlesState(
+          articles: [],
+          message: l.message,
+          requestState: currentState,
+        ));
+      }, (r) {
         allArticles = r;
-
+        currentState = RequestState.loaded;
         emit(GetAllArticlesState(
           articles: r,
           message: 'Success',
-          requestState: RequestState.loaded,
+          requestState: currentState,
         ));
       });
     });
