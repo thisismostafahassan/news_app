@@ -17,11 +17,11 @@ class GetAllArticlesState extends HomeState {
   });
 }
 
-class GetSelectedHeadlineStete extends HomeState {
+class GetSelectedCategoryArticlesState extends HomeState {
   final RequestState? requestState;
   final List<Article>? articles;
   final String? message;
-  GetSelectedHeadlineStete({
+  GetSelectedCategoryArticlesState({
     this.requestState = RequestState.loading,
     this.articles = const [],
     this.message = '',

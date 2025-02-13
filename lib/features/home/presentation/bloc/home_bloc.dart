@@ -45,7 +45,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     });
     //
     // Get Selected Article Event
-    on<GetSelectedArticleEvent>((event, emit) async {
+    on<GetSelectedCategoryArticlesEvent>((event, emit) async {
       final BaseRemoteDataSource baseRemoteDataSource = RemoteDataSource();
       final BaseHomeRepository baseHomeRepository =
           HomeRepository(baseRemoteDataSource: baseRemoteDataSource);
@@ -54,13 +54,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           .execute(path: event.path);
 
       response.fold(
-          (l) => emit(GetSelectedHeadlineStete(
+          (l) => emit(GetSelectedCategoryArticlesState(
                 articles: [],
                 message: l.message,
                 requestState: RequestState.error,
               )), (r) {
         topHeadlinesArticles = r;
-        emit(GetSelectedHeadlineStete(
+        emit(GetSelectedCategoryArticlesState(
           articles: r,
           message: 'Success',
           requestState: RequestState.loaded,
