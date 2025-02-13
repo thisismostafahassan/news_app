@@ -44,23 +44,23 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       });
     });
     //
-    // Get All TopHeadlines
-    on<GetAllTopHeadlinesArticlesEvent>((event, emit) async {
+    // Get Selected Article Event
+    on<GetSelectedArticleEvent>((event, emit) async {
       final BaseRemoteDataSource baseRemoteDataSource = RemoteDataSource();
       final BaseHomeRepository baseHomeRepository =
           HomeRepository(baseRemoteDataSource: baseRemoteDataSource);
       final response = await GetAllTopHeadlineSourcesUsecase(
               baseHomeRepository: baseHomeRepository)
-          .execute();
+          .execute(path: event.path);
 
       response.fold(
-          (l) => emit(GetAllTopHeadlinesArticlesState(
+          (l) => emit(GetSelectedHeadlineStete(
                 articles: [],
                 message: l.message,
                 requestState: RequestState.error,
               )), (r) {
         topHeadlinesArticles = r;
-        emit(GetAllTopHeadlinesArticlesState(
+        emit(GetSelectedHeadlineStete(
           articles: r,
           message: 'Success',
           requestState: RequestState.loaded,

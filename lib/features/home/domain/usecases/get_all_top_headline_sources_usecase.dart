@@ -7,7 +7,7 @@ class GetAllTopHeadlineSourcesUsecase {
   final BaseHomeRepository baseHomeRepository;
   GetAllTopHeadlineSourcesUsecase({required this.baseHomeRepository});
 
-  Future<Either<Failure, List<Article>>> execute() async {
-    return await baseHomeRepository.getAllTopHeadlineSources();
+  Future<Either<Failure, List<Article>>> execute({required String path}) async {
+    return await baseHomeRepository.getSelectedHeadline(path: path);
   }
 }

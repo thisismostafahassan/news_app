@@ -4,5 +4,6 @@ import 'package:news_app/features/home/domain/entities/article.dart';
 
 abstract class BaseHomeRepository {
   Future<Either<Failure, List<Article>>> getAllArticles();
-  Future<Either<Failure, List<Article>>> getAllTopHeadlineSources();
+  Future<Either<Failure, List<Article>>> getSelectedHeadline(
+      {required String path});
 }

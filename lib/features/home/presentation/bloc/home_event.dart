@@ -6,6 +6,7 @@ abstract class HomeEvent {
 
 class GetAllArticlesEvent extends HomeEvent {}
 
-class GetAllTopHeadlinesArticlesEvent extends HomeEvent {}
-
-class GetSelectedArticleEvent extends HomeEvent {}
+class GetSelectedArticleEvent extends HomeEvent {
+  final String path;
+  GetSelectedArticleEvent({required this.path});
+}

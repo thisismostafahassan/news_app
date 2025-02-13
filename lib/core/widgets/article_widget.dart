@@ -27,30 +27,27 @@ class ArticleWidget extends StatelessWidget {
           alignment: Alignment.bottomCenter,
           children: [
             Container(
-              margin: EdgeInsets.symmetric(vertical: widthPercentage(8).w),
-              padding: EdgeInsets.symmetric(horizontal: widthPercentage(8).w),
+              margin: EdgeInsets.symmetric(
+                vertical: widthPercentage(8).w,
+                horizontal: widthPercentage(12).w,
+              ),
               height: widthPercentage(150).w,
               width: double.infinity,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(widthPercentage(16).w),
               ),
-              child: imageUrl != null
-                  ? ClipRRect(
-                      borderRadius:
-                          BorderRadius.circular(widthPercentage(12).w),
-                      child: Image.network(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(widthPercentage(12).w),
+                child: imageUrl != null
+                    ? Image.network(
                         imageUrl!,
                         fit: BoxFit.fill,
-                      ),
-                    )
-                  : ClipRRect(
-                      borderRadius:
-                          BorderRadius.circular(widthPercentage(12).w),
-                      child: Image.asset(
+                      )
+                    : Image.asset(
                         'assets/default_news.png',
                         fit: BoxFit.fill,
                       ),
-                    ),
+              ),
             ),
             //
             Container(

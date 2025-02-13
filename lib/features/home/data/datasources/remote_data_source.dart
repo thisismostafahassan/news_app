@@ -22,8 +22,8 @@ class RemoteDataSource implements BaseRemoteDataSource {
   }
 
   @override
-  Future<List<ArticleModel>> getAllTobHeadlineSources() async {
-    final response = await Dio().get(ApiConstants.topHeadlineallSources);
+  Future<List<ArticleModel>> getSelectedHeadline({required String path}) async {
+    final response = await Dio().get(path);
 
     if (response.statusCode == 200 &&
         response.data is Map<String, dynamic> &&

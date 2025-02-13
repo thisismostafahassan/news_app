@@ -20,8 +20,9 @@ class HomeRepository implements BaseHomeRepository {
   }
 
   @override
-  Future<Either<Failure, List<ArticleModel>>> getAllTopHeadlineSources() async {
-    final response = await baseRemoteDataSource.getAllTobHeadlineSources();
+  Future<Either<Failure, List<ArticleModel>>> getSelectedHeadline(
+      {required String path}) async {
+    final response = await baseRemoteDataSource.getSelectedHeadline(path: path);
 
     try {
       return Right(response);
