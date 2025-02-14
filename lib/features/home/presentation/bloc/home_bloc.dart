@@ -13,7 +13,8 @@ part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   List<Article> allArticles = [];
-  List topHeadlinesArticles = [];
+  List<Article> selectedArticles = [];
+
   RequestState currentState = RequestState.loading;
   late Article selectedArticle;
   HomeBloc() : super(HomeInitial()) {
@@ -59,7 +60,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
                 message: l.message,
                 requestState: RequestState.error,
               )), (r) {
-        topHeadlinesArticles = r;
+        selectedArticles = r;
         emit(GetSelectedCategoryArticlesState(
           articles: r,
           message: 'Success',
@@ -69,5 +70,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     });
     //
     //
+    on<GetSelectedArticleEvent>((event, state) {
+      selectedArticle = event.selectedArticle;
+    });
   }
 }

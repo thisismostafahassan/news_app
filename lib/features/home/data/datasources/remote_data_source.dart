@@ -22,7 +22,8 @@ class RemoteDataSource implements BaseRemoteDataSource {
   }
 
   @override
-  Future<List<ArticleModel>> getSelectedHeadline({required String path}) async {
+  Future<List<ArticleModel>> getSelectedCategoryArticles(
+      {required String path}) async {
     final response = await Dio().get(path);
 
     if (response.statusCode == 200 &&

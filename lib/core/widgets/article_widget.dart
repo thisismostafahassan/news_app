@@ -1,23 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/core/routings/app_router.dart';
 
 import 'package:news_app/core/utils/responsive_utils.dart';
+import 'package:news_app/core/utils/routing_utils.dart';
+import 'package:news_app/features/home/presentation/bloc/home_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import '../../features/home/domain/entities/article.dart';
+import '../../features/home/presentation/pages/selected_article_details.dart';
+
 class ArticleWidget extends StatelessWidget {
-  final String? imageUrl;
-  final String title;
-  final String? subTitle;
+  final Article? selectedArticle;
+
   const ArticleWidget({
     super.key,
-    required this.imageUrl,
-    required this.title,
-    required this.subTitle,
+    required this.selectedArticle,
   });
 
   @override
   Widget build(BuildContext context) {
+    final homeBloc = AppRouter.homeBloc;
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        homeBloc
+            .add(GetSelectedArticleEvent(selectedArticle: selectedArticle!));
+        pushToNamedScreen(context,
+            routeName: SelectedArticleDetailsPage.routeName);
+      },
       child: Padding(
         padding: EdgeInsets.only(
           top: widthPercentage(8).w,
@@ -38,9 +47,9 @@ class ArticleWidget extends StatelessWidget {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(widthPercentage(12).w),
-                child: imageUrl != null
+                child: selectedArticle!.urlToImage != null
                     ? Image.network(
-                        imageUrl!,
+                        selectedArticle!.urlToImage!,
                         fit: BoxFit.fill,
                       )
                     : Image.asset(
@@ -60,7 +69,7 @@ class ArticleWidget extends StatelessWidget {
               child: Center(
                 child: ListTile(
                   title: Text(
-                    title,
+                    selectedArticle!.title!,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
@@ -69,7 +78,9 @@ class ArticleWidget extends StatelessWidget {
                     ),
                   ),
                   subtitle: Text(
-                    subTitle ?? '',
+                    selectedArticle!.description != null
+                        ? selectedArticle!.description!
+                        : 'This article has no description',
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(

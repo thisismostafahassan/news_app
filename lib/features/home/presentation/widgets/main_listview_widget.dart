@@ -23,9 +23,7 @@ class MainListviewWidget extends StatelessWidget {
             itemCount: homeBloc.allArticles.length,
             itemBuilder: (context, index) {
               return ArticleWidget(
-                imageUrl: homeBloc.allArticles[index].urlToImage,
-                title: homeBloc.allArticles[index].title!,
-                subTitle: homeBloc.allArticles[index].description,
+                selectedArticle: homeBloc.allArticles[index],
               );
             },
           ));

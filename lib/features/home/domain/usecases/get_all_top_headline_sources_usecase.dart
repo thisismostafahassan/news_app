@@ -8,6 +8,6 @@ class GetAllTopHeadlineSourcesUsecase {
   GetAllTopHeadlineSourcesUsecase({required this.baseHomeRepository});
 
   Future<Either<Failure, List<Article>>> execute({required String path}) async {
-    return await baseHomeRepository.getSelectedHeadline(path: path);
+    return await baseHomeRepository.getSelectedCategoryArticles(path: path);
   }
 }
