@@ -29,3 +29,5 @@ class GetSelectedCategoryArticlesState extends HomeState {
 }
 
 class GetSelectedArticleState extends HomeState {}
+
+class AnimateToTopState extends HomeState {}

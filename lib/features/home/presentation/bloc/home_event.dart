@@ -16,3 +16,5 @@ class GetSelectedArticleEvent extends HomeEvent {
 
   GetSelectedArticleEvent({required this.selectedArticle});
 }
+
+class AnimateToTopEvent extends HomeEvent {}

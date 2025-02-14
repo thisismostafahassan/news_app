@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/core/utils/enum.dart';
 import 'package:news_app/features/home/data/datasources/base_remote_data_source.dart';
@@ -15,7 +16,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   List<Article> allArticles = [];
   List<Article> selectedArticles = [];
   bool isCategorySelected = false;
-
+  ScrollController scrollController = ScrollController();
   RequestState currentState = RequestState.loading;
   late Article selectedArticle;
   HomeBloc() : super(HomeInitial()) {
@@ -74,6 +75,15 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     //
     on<GetSelectedArticleEvent>((event, state) {
       selectedArticle = event.selectedArticle;
+    });
+    //
+    //
+    on<AnimateToTopEvent>((event, state) {
+      scrollController.animateTo(
+        0.0,
+        duration: Duration(microseconds: 500),
+        curve: Curves.easeInOut,
+      );
     });
   }
 }

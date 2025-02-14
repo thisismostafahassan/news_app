@@ -18,12 +18,18 @@ class HomePage extends StatelessWidget {
       value: AppRouter.homeBloc..add(GetAllArticlesEvent()),
       child: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
+          final homeBloc = context.read<HomeBloc>();
           return Scaffold(
-            extendBodyBehindAppBar: false,
             body: CustomScrollView(
+              controller: homeBloc.scrollController,
               physics: BouncingScrollPhysics(),
               slivers: [
-                theAppBar(),
+                theAppBar(
+                  onTap: () async {
+                    homeBloc.add(AnimateToTopEvent());
+                    return;
+                  },
+                ),
                 CategoriesListview(),
                 MainListviewWidget(),
               ],
