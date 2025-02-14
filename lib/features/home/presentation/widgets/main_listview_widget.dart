@@ -16,17 +16,14 @@ class MainListviewWidget extends StatelessWidget {
       builder: (context, state) {
         final homeBloc = context.watch<HomeBloc>();
         if (homeBloc.currentState == RequestState.loaded) {
-          return SliverToBoxAdapter(
-              child: ListView.builder(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            itemCount: homeBloc.allArticles.length,
-            itemBuilder: (context, index) {
+          return SliverList(
+            delegate: SliverChildBuilderDelegate(
+                childCount: homeBloc.allArticles.length, (context, index) {
               return ArticleWidget(
                 selectedArticle: homeBloc.allArticles[index],
               );
-            },
-          ));
+            }),
+          );
         } else if (homeBloc.currentState == RequestState.loading) {
           return SliverToBoxAdapter(
             child: Padding(

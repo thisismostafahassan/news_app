@@ -20,7 +20,9 @@ class HomePage extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
             appBar: theAppBar(),
+            extendBodyBehindAppBar: false,
             body: CustomScrollView(
+              physics: BouncingScrollPhysics(),
               slivers: [
                 CategoriesListview(),
                 MainListviewWidget(),

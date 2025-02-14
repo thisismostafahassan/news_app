@@ -14,9 +14,9 @@ class SelectedArticleDetailsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: widthPercentage(8).w),
+        padding: EdgeInsets.symmetric(horizontal: widthPercentage(12).w),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
@@ -52,34 +52,14 @@ class SelectedArticleDetailsPage extends StatelessWidget {
             ),
             //
             PercentageSizedBox(height: 20),
-            //
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                if (homeBloc.selectedArticle.author != null)
-                  Text(
-                    homeBloc.selectedArticle.author!,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: widthPercentage(10).w,
-                      color: Colors.blueGrey,
-                      fontWeight: FontWeight.w500,
-                      textBaseline: TextBaseline.ideographic,
-                    ),
-                  ),
-                //
-                Text(
-                  homeBloc.selectedArticle.publishedAt!,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: widthPercentage(10).w,
-                    color: Colors.blueGrey,
-                    fontWeight: FontWeight.w500,
-                    textBaseline: TextBaseline.ideographic,
-                  ),
+            if (homeBloc.selectedArticle.source!.name != null)
+              Text(
+                "Source: ${homeBloc.selectedArticle.source!.name!}",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: widthPercentage(12).w,
                 ),
-              ],
-            ),
+              )
           ],
         ),
       ),
