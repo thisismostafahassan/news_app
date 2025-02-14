@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-PreferredSizeWidget theAppBar() {
-  return AppBar(
+SliverAppBar theAppBar() {
+  return SliverAppBar(
     centerTitle: true,
     elevation: 0.0,
+    floating: true,
     title: Text.rich(
       TextSpan(
         children: [
