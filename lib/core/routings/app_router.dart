@@ -4,6 +4,7 @@ import 'package:news_app/features/home/presentation/bloc/home_bloc.dart';
 import 'package:news_app/features/home/presentation/pages/home_page.dart';
 import 'package:news_app/features/home/presentation/pages/selected_article_details.dart';
 
+import '../../features/home/presentation/pages/category_page.dart';
 import '../../main.dart';
 
 class AppRouter {
@@ -25,6 +26,14 @@ class AppRouter {
           builder: (context) => BlocProvider.value(
             value: homeBloc,
             child: const SelectedArticleDetailsPage(),
+          ),
+        );
+      // Category Page
+      case CategoryPage.routeName:
+        return CupertinoPageRoute(
+          builder: (context) => BlocProvider.value(
+            value: homeBloc,
+            child: const CategoryPage(),
           ),
         );
       default:

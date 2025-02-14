@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/core/routings/app_router.dart';
+import 'package:news_app/core/utils/cached_network_image.dart';
 
 import 'package:news_app/core/utils/responsive_utils.dart';
 import 'package:news_app/core/utils/routing_utils.dart';
+import 'package:news_app/core/widgets/custome_circular_indicator.dart';
 import 'package:news_app/features/home/presentation/bloc/home_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -20,6 +22,7 @@ class ArticleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final homeBloc = AppRouter.homeBloc;
+
     return GestureDetector(
       onTap: () {
         homeBloc
@@ -48,10 +51,13 @@ class ArticleWidget extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(widthPercentage(12).w),
                 child: selectedArticle!.urlToImage != null
-                    ? Image.network(
-                        selectedArticle!.urlToImage!,
-                        fit: BoxFit.fill,
-                      )
+                    ? myCachedNetworkImage(
+                        imageUrl: selectedArticle!.urlToImage!,
+                        placeHolder: CustomeCircularIndicator(
+                          padding: EdgeInsets.only(
+                            bottom: widthPercentage(30).w,
+                          ),
+                        ))
                     : Image.asset(
                         'assets/default_news.png',
                         fit: BoxFit.fill,

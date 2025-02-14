@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/core/routings/app_router.dart';
 import 'package:news_app/core/utils/responsive_utils.dart';
@@ -31,7 +32,11 @@ class SelectedArticleDetailsPage extends StatelessWidget {
             PercentageSizedBox(height: 20),
             //
             homeBloc.selectedArticle.urlToImage != null
-                ? Image.network(homeBloc.selectedArticle.urlToImage!)
+                ? CachedNetworkImage(
+                    imageUrl: homeBloc.selectedArticle.urlToImage!,
+                    placeholder: (context, url) => CircularProgressIndicator(),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  )
                 : Image.asset(
                     'assets/default_news.png',
                     fit: BoxFit.fill,

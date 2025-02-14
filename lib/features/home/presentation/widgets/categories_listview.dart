@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/core/constants/api_constants.dart';
 import 'package:news_app/core/utils/responsive_utils.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -18,18 +19,35 @@ class CategoriesListview extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           children: [
             CategoryWidget(
-                imagePath: 'assets/politics.jpg', categoryName: 'Politics'),
+              imagePath: 'assets/politics.jpg',
+              categoryName: 'Politics',
+              path: ApiConstants.politics,
+            ),
             CategoryWidget(
-                imagePath: 'assets/sports.avif', categoryName: 'Sports'),
+              imagePath: 'assets/sports.avif',
+              categoryName: 'Sports',
+              path: ApiConstants.sports,
+            ),
             CategoryWidget(
-                imagePath: 'assets/health.avif', categoryName: 'Health'),
+              imagePath: 'assets/health.avif',
+              categoryName: 'Health',
+              path: ApiConstants.health,
+            ),
             CategoryWidget(
-                imagePath: 'assets/crypto.png', categoryName: 'Crypto'),
+              imagePath: 'assets/crypto.png',
+              categoryName: 'Crypto',
+              path: ApiConstants.crypto,
+            ),
             CategoryWidget(
-                imagePath: 'assets/drama.jpg', categoryName: 'Drama'),
+              imagePath: 'assets/drama.jpg',
+              categoryName: 'Drama',
+              path: ApiConstants.drama,
+            ),
             CategoryWidget(
-                imagePath: 'assets/entertainment.png',
-                categoryName: 'Entertainment'),
+              imagePath: 'assets/entertainment.png',
+              categoryName: 'Entertainment',
+              path: ApiConstants.entertainment,
+            ),
           ],
         ),
       ),

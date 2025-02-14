@@ -1,3 +1,7 @@
+// ignore_for_file: invalid_use_of_visible_for_testing_member
+
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/core/utils/enum.dart';
@@ -15,9 +19,11 @@ part 'home_state.dart';
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   List<Article> allArticles = [];
   List<Article> selectedArticles = [];
-  bool isCategorySelected = false;
+
+  late String categorypath;
   ScrollController scrollController = ScrollController();
-  RequestState currentState = RequestState.loading;
+  RequestState homecurrentState = RequestState.loading;
+  RequestState categorycurrentState = RequestState.loading;
   late Article selectedArticle;
   HomeBloc() : super(HomeInitial()) {
     // Get All Articles
@@ -30,19 +36,19 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
               .execute();
 
       response.fold((l) {
-        currentState = RequestState.error;
+        homecurrentState = RequestState.error;
         emit(GetAllArticlesState(
           articles: [],
           message: l.message,
-          requestState: currentState,
+          requestState: homecurrentState,
         ));
       }, (r) {
         allArticles = r;
-        currentState = RequestState.loaded;
+        homecurrentState = RequestState.loaded;
         emit(GetAllArticlesState(
           articles: r,
           message: 'Success',
-          requestState: currentState,
+          requestState: homecurrentState,
         ));
       });
     });
@@ -63,11 +69,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
                 requestState: RequestState.error,
               )), (r) {
         selectedArticles = r;
-        isCategorySelected = true;
+        categorycurrentState = RequestState.loaded;
+        log(r.toString());
         emit(GetSelectedCategoryArticlesState(
           articles: r,
           message: 'Success',
-          requestState: RequestState.loaded,
+          requestState: categorycurrentState,
         ));
       });
     });
@@ -75,6 +82,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     //
     on<GetSelectedArticleEvent>((event, state) {
       selectedArticle = event.selectedArticle;
+      emit(GetSelectedArticleState());
     });
     //
     //
@@ -84,6 +92,19 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         duration: Duration(microseconds: 500),
         curve: Curves.easeInOut,
       );
+    });
+    //
+    //
+    on<GetSelectedCategoryEvent>((event, state) {
+      categorypath = event.categoryPath;
+      emit(GetSelectedCategoryState());
+    });
+    //
+    //
+    on<ResetEvent>((event, state) {
+      categorycurrentState = RequestState.loading;
+      selectedArticles = [];
+      emit(ResetState());
     });
   }
 }

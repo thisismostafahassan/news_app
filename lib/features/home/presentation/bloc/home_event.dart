@@ -18,3 +18,11 @@ class GetSelectedArticleEvent extends HomeEvent {
 }
 
 class AnimateToTopEvent extends HomeEvent {}
+
+class GetSelectedCategoryEvent extends HomeEvent {
+  final String categoryPath;
+
+  GetSelectedCategoryEvent({required this.categoryPath});
+}
+
+class ResetEvent extends HomeEvent {}
