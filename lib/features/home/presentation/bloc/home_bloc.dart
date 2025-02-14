@@ -14,6 +14,7 @@ part 'home_state.dart';
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   List<Article> allArticles = [];
   List<Article> selectedArticles = [];
+  bool isCategorySelected = false;
 
   RequestState currentState = RequestState.loading;
   late Article selectedArticle;
@@ -61,6 +62,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
                 requestState: RequestState.error,
               )), (r) {
         selectedArticles = r;
+        isCategorySelected = true;
         emit(GetSelectedCategoryArticlesState(
           articles: r,
           message: 'Success',
